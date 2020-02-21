@@ -1,0 +1,17 @@
+---
+- name: Converge
+  hosts: all
+  become: yes
+  gather_facts: yes
+  vars:
+    mssql_version: 2017
+  pre_tasks:
+    - name: ensure https is available to apt
+      when:
+        - ansible_distribution in [ "Debian", "Ubuntu" ]
+      apt:
+        update_cache: yes
+        name: apt-transport-https
+        state: present
+  roles:
+    - ansible-role-mssql

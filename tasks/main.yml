@@ -86,35 +86,6 @@
   until: mssql_install_software_in_mssql_tools_apt is succeeded
   retries: 3
 
-- name: install software mssql-server-agent (package)
-  package:
-    name: "{{ mssql_server_agent_package }}"
-    state: present
-  environment:
-    ACCEPT_EULA: Y
-  when:
-    - ansible_distribution != "Ubuntu"
-  notify:
-    - restart mssql-server
-  register: mssql_install_software_mssql_server_agent_package
-  until: mssql_install_software_mssql_server_agent_package is succeeded
-  retries: 3
-
-- name: install software in mssql-server-agent (apt)
-  apt:
-    name: "{{ mssql_server_agent_package }}"
-    state: present
-    allow_unauthenticated: yes
-  environment:
-    ACCEPT_EULA: Y
-  when:
-    - ansible_distribution == "Ubuntu"
-  notify:
-    - restart mssql-server
-  register: mssql_install_software_in_mssql_server_agent_apt
-  until: mssql_install_software_in_mssql_server_agent_apt is succeeded
-  retries: 3
-
 - name: install mssql-server-fts
   package:
     name: "{{ mssql_fts_package }}"
