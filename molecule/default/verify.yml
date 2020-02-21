@@ -3,7 +3,14 @@
   hosts: all
   become: yes
   gather_facts: yes
-
+  vars:
+    __mssql_cmd: "/opt/mssql-tools/bin/sqlcmd -S 'localhost,1433' -U sa "
+    __mssql_cmd2: "-P 'StR0nGp4ss.' -b -s, -h-1 -Q "
+    __mssql_cmd3: "\"SET NOCOUNT ON; SELECT hostname FROM MASTER.dbo.sysprocesses WHERE program_name = N'SQLAgent - Generic Refresher'\""
   tasks:
     - name: check if connection still works
       ping:
+    - name: check that sql server agent is running
+      command: "{{ __mssql_cmd }} {{ __mssql_cmd2 }} {{ __mssql_cmd3 }}"
+      register: sqlcmd
+      failed_when: inventory_hostname not in sqlcmd.stdout
