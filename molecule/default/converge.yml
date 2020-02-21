@@ -3,6 +3,13 @@
   hosts: all
   become: yes
   gather_facts: yes
-
+  pre_tasks:
+    - name: ensure https is available to apt
+      when:
+        - ansible_distribution in [ "Debian", "Ubuntu" ]
+      apt:
+        update_cache: yes
+        name: apt-transport-https
+        state: present
   roles:
     - ansible-role-mssql
