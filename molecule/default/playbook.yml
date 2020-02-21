@@ -4,5 +4,12 @@
   become: yes
   gather_facts: yes
 
+  pre_tasks:
+    - name: install dependencies
+      when:
+        - ansible_distribution in [ "CentOS", "RedHat", "Fedora" ]
+      package:
+        name: compat-openssl10
+        state: present
   roles:
     - ansible-role-mssql
