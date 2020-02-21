@@ -12,7 +12,7 @@ mssql_rhel_repositories:
 
 mssql_ubuntu_repositories:
   - repo: https://packages.microsoft.com/ubuntu/16.04/prod
-  - repo: https://packages.microsoft.com/ubuntu/16.04/mssql-server-2019
+  - repo: https://packages.microsoft.com/ubuntu/16.04/mssql-server-{{ mssql_version }}
 
 _mssql_server_package:
   Debian: mssql-server={{ mssql_server_version }}

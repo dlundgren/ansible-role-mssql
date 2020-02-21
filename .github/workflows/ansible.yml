@@ -31,9 +31,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        config:
-          - image: "centos"
-            tag: "7"
+        os:
+          - ubuntu-16.04
+          - centos-7
     steps:
       - name: checkout
         uses: actions/checkout@v2
