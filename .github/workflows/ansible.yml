@@ -20,7 +20,7 @@ jobs:
       - name: checkout
         uses: actions/checkout@v2
       - name: molecule
-        uses: robertdebock/molecule-action@1.2.8
+        uses: robertdebock/molecule-action@master
         with:
           entrypoint: /usr/local/bin/molecule
           args: lint
