@@ -3,7 +3,14 @@
   hosts: all
   gather_facts: no
   become: yes
-
+  pre_tasks:
+    - name: ensure https is available to apt
+      when:
+        - ansible_distribution in [ "Debian", "Ubuntu" ]
+      apt:
+        update_cache: yes
+        name: apt-transport-https
+        state: present
   roles:
     - role: robertdebock.bootstrap
     - role: robertdebock.core_dependencies
