@@ -6,8 +6,7 @@ dependency:
   name: galaxy
   options:
     role-file: requirements.yml
-lint:
-  name: yamllint
+lint: yamllint
 driver:
   name: docker
 platforms:
