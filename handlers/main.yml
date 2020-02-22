@@ -16,7 +16,7 @@
     MSSQL_SA_PASSWORD: "{{ mssql_sa_password }}"
     MSSQL_PID: "{{ mssql_pid }}"
     ACCEPT_EULA: Y
-    MSSQL_AGENT_ENABLED: 1
+    MSSQL_AGENT_ENABLED: "{{ mssql_server_agent_value }}"
 
 - name: set network.ipaddress
   command: /opt/mssql/bin/mssql-conf set network.ipaddress {{ ansible_default_ipv4.address }}
