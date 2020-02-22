@@ -21,10 +21,4 @@ _mssql_server_package:
 
 mssql_server_package: "{{ _mssql_server_package[ansible_os_family] }}"
 
-_mssql_server_agent_value:
-  2017: "true"
-  2019: 1
-
-mssql_server_agent_value: "{{ _mssql_server_agent_value[mssql_version] }}"
-
 mssql_fts_package: mssql-server-fts
